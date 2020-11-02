@@ -89,13 +89,19 @@ workout_data <- rbind(workout_data,new_row)
 
 # Create bar graphs:
 # For now, we'll skip assigning names to our plots and just view the output of ggplot() #
+
+# Strength:
 ggplot() +
   geom_col(data=workout_data, aes(x=Date, y=`Strength Minutes`), fill="dodgerblue")
 
+# Cardio:
 ggplot() +
   geom_col(data=workout_data, aes(x=Date, y=`Miles Ran`), fill="salmon")
+#                           # geom_col() tells R to make a bar chart                    #
+#                           # aes() lets us specify which variables we want to give     #
+                            # visual properties in our plot                             #
 
-# Change the bar color to represent day of the week:
+# Change the bar color to represent day of the week by including 'fill' in aes():
 ggplot() +
   geom_col(data=workout_data, aes(x=Date, y=`Strength Minutes`, fill=Weekday))
 
@@ -103,5 +109,8 @@ ggplot() +
 # Save output:
 my_plot <- ggplot() +
   geom_col(data=workout_data, aes(x=Date, y=`Strength Minutes`, fill=Weekday))
+#                           # first we give our plot a name                             #
 
 ggsave(paste(wd,"strength_plot.png", sep="/"), my_plot, height=4, width=6)
+#                           # ggsave() requires the full path of the .png file we want  #
+                            # to create, so we use the paste() function again           #
